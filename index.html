@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buat Pengaduan | Suara Kampus</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- defer: skrip diunduh paralel dan dijalankan setelah HTML selesai di-parsing -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Komponen 1: Header dan navigasi (toggle menu di ponsel) -->
+  <header class="header">
+    <div class="header__brand">
+      <strong>SUARA KAMPUS</strong>
+      <span>Layanan pengaduan mahasiswa</span>
+    </div>
+    <button id="menu-btn" class="tombol tombol--sekunder menu-toggle" type="button"
+            aria-expanded="false" aria-controls="menu-utama">Menu</button>
+    <nav id="menu-utama" class="nav" aria-label="Navigasi utama">
+      <a class="tombol tombol--sekunder" href="#">Beranda</a>
+      <a class="tombol tombol--utama" href="#" aria-current="page">Buat pengaduan</a>
+      <a class="tombol tombol--sekunder" href="#">Pengaduan saya</a>
+    </nav>
+  </header>
+
+  <main class="halaman">
+    <p class="breadcrumb">Portal Mahasiswa / Buat Pengaduan</p>
+    <h1>Buat pengaduan</h1>
+    <p class="subjudul">Pilih kategori dan lengkapi data sebelum mengirim.</p>
+
+    <!-- Komponen 2: Tab kategori -->
+    <div class="tab" role="group" aria-label="Kategori pengaduan">
+      <button class="tombol tombol--utama" type="button" data-kategori="absensi" aria-pressed="true">Kendala absensi</button>
+      <button class="tombol tombol--sekunder" type="button" data-kategori="nilai" aria-pressed="false">Koreksi nilai</button>
+    </div>
+
+    <div class="tata-letak">
+      <!-- Komponen 3: Formulir pengaduan -->
+      <section class="kartu" id="bagian-form" aria-labelledby="judul-form">
+        <h2 id="judul-form" class="visually-hidden">Formulir pengaduan</h2>
+        <form id="form-pengaduan" novalidate>
+          <div class="baris">
+            <div class="kolom">
+              <label for="matkul">Mata kuliah *</label>
+              <input id="matkul" name="matkul" type="text" required aria-describedby="matkul-error" placeholder="Pemrograman Web • IF203">
+              <p id="matkul-error" class="galat" role="alert"></p>
+            </div>
+            <div class="kolom">
+              <label for="tanggal">Tanggal kejadian *</label>
+              <input id="tanggal" name="tanggal" type="date" required aria-describedby="tanggal-error">
+              <p id="tanggal-error" class="galat" role="alert"></p>
+            </div>
+          </div>
+
+          <label for="judul">Judul pengaduan *</label>
+          <input id="judul" name="judul" type="text" required aria-describedby="judul-error" placeholder="Kehadiran belum tercatat">
+          <p id="judul-error" class="galat" role="alert"></p>
+
+          <label for="email">Email kampus *</label>
+          <input id="email" name="email" type="email" required aria-describedby="email-error" placeholder="nama@kampus.ac.id">
+          <p id="email-error" class="galat" role="alert"></p>
+
+          <label for="kronologi">Kronologi *</label>
+          <textarea id="kronologi" name="kronologi" rows="4" required minlength="20" aria-describedby="kronologi-error kronologi-hitung"></textarea>
+          <p id="kronologi-hitung" class="bantuan">0 karakter (min. 20)</p>
+          <p id="kronologi-error" class="galat" role="alert"></p>
+
+          <div class="aksi">
+            <button class="tombol tombol--utama" type="submit">Kirim pengaduan</button>
+            <button class="tombol tombol--sekunder" type="reset">Batal</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Komponen 4: Panel informasi -->
+      <aside class="kartu panel" aria-labelledby="judul-panel">
+        <h2 id="judul-panel">Sebelum mengirim</h2>
+        <ol>
+          <li>Jelaskan apa yang terjadi.</li>
+          <li>Sertakan mata kuliah dan tanggal.</li>
+          <li>Lampirkan bukti yang relevan.</li>
+        </ol>
+        <h3>Privasi Anda</h3>
+        <p>Hindari menyertakan kata sandi atau data pribadi mahasiswa lain.</p>
+      </aside>
+    </div>
+
+    <!-- Komponen 5: Kartu konfirmasi tiket (muncul setelah form valid dikirim) -->
+    <section id="konfirmasi" class="kartu konfirmasi" aria-labelledby="judul-konfirmasi" hidden>
+      <h2 id="judul-konfirmasi">Laporan contoh berhasil dikirim</h2>
+      <p>Simpan nomor tiket untuk memantau tindak lanjut.</p>
+      <div class="tiket">
+        <strong id="nomor-tiket"></strong>
+        <span>Menunggu verifikasi</span>
+      </div>
+      <p id="ringkasan-tiket"></p>
+      <p class="bantuan">Ini adalah simulasi; tidak ada pengaduan nyata yang dikirim.</p>
+      <button id="buat-lagi" class="tombol tombol--utama" type="button">Buat pengaduan baru</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Wireframe • Data fiktif • tidak terhubung ke sistem kampus</p>
+  </footer>
+</body>
+</html>

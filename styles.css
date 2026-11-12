@@ -1,0 +1,128 @@
+/* ========== Token desain (custom property) ========== */
+:root {
+  /* Warna */
+  --warna-teks: #1f1f1f;
+  --warna-teks-pudar: #5f5f5f;
+  --warna-latar: #f6f6f6;
+  --warna-kartu: #ffffff;
+  --warna-garis: #d4d4d4;
+  --warna-aksen: #1f1f1f;
+  --warna-galat: #b3261e;
+  --warna-fokus: #0066cc;
+  /* Spacing (kelipatan 8 px) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --radius: 6px;
+}
+
+/* ========== Dasar ========== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  color: var(--warna-teks);
+  background: var(--warna-latar);
+  line-height: 1.5;
+}
+
+h1 { font-size: 2.25rem; margin: var(--space-1) 0; }
+h2 { font-size: 1.25rem; margin: 0 0 var(--space-2); }
+h3 { font-size: 1rem; margin: var(--space-3) 0 var(--space-1); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Gaya fokus keyboard tanpa mengganggu klik mouse */
+:focus-visible {
+  outline: 3px solid var(--warna-fokus);
+  outline-offset: 2px;
+}
+
+/* ========== Header & navigasi ========== */
+.header {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: var(--space-2);
+  padding: var(--space-2) var(--space-6);
+  background: var(--warna-kartu);
+}
+.header__brand { display: flex; flex-direction: column; }
+.header__brand span { font-size: 0.8rem; color: var(--warna-teks-pudar); }
+.nav { display: flex; gap: var(--space-2); }
+.menu-toggle { display: none; }
+
+/* ========== Tombol (dipakai ulang di semua komponen) ========== */
+.tombol {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0 var(--space-3);
+  border: 1px solid var(--warna-garis); border-radius: var(--radius);
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+}
+.tombol--utama { background: var(--warna-aksen); border-color: var(--warna-aksen); color: #fff; }
+.tombol--sekunder { background: var(--warna-kartu); color: var(--warna-teks); }
+
+/* ========== Halaman & tata letak 8:4 (grid 12 kolom) ========== */
+.halaman { max-width: 1200px; margin: 0 auto; padding: var(--space-3) var(--space-6) var(--space-6); }
+.breadcrumb { font-size: 0.8rem; color: var(--warna-teks-pudar); margin: 0; }
+.subjudul { color: var(--warna-teks-pudar); margin: 0 0 var(--space-3); }
+.tab { display: flex; gap: var(--space-2); margin-bottom: var(--space-3); flex-wrap: wrap; }
+
+.tata-letak {
+  display: grid; grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-3); align-items: start;
+}
+#bagian-form { grid-column: span 8; }
+.panel { grid-column: span 4; }
+
+/* ========== Kartu (komponen .kartu dipakai ulang) ========== */
+.kartu {
+  background: var(--warna-kartu);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+/* ========== Formulir ========== */
+label { display: block; font-weight: 600; font-size: 0.9rem; margin: var(--space-2) 0 var(--space-1); }
+input, textarea {
+  width: 100%; padding: 12px var(--space-2);
+  font: inherit; color: inherit;
+  background: var(--warna-latar);
+  border: 1px solid var(--warna-garis); border-radius: var(--radius);
+}
+input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--warna-galat); }
+.baris { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.kolom { flex: 1 1 200px; }
+.bantuan { font-size: 0.85rem; color: var(--warna-teks-pudar); margin: var(--space-1) 0 0; }
+.galat { font-size: 0.85rem; color: var(--warna-galat); margin: var(--space-1) 0 0; min-height: 0; }
+.aksi { display: flex; gap: var(--space-2); margin-top: var(--space-3); flex-wrap: wrap; }
+
+/* ========== Panel & konfirmasi ========== */
+.panel ol { padding-left: var(--space-3); margin: 0; }
+.panel p { margin: 0; color: var(--warna-teks-pudar); }
+.konfirmasi { margin-top: var(--space-3); }
+.konfirmasi[hidden] { display: none; }
+.tiket {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #ececec; padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius); font-size: 1.25rem;
+}
+.tiket span { font-size: 1rem; font-weight: 600; }
+
+.footer { padding: var(--space-3) var(--space-6); font-size: 0.8rem; color: var(--warna-teks-pudar); }
+
+/* ========== Responsif (ponsel) ========== */
+@media (max-width: 768px) {
+  .header, .halaman, .footer { padding-left: var(--space-2); padding-right: var(--space-2); }
+  .menu-toggle { display: inline-flex; }
+  .nav { display: none; flex-direction: column; width: 100%; }
+  .nav.nav--terbuka { display: flex; }
+  #bagian-form, .panel { grid-column: 1 / -1; }
+  h1 { font-size: 1.75rem; }
+}
